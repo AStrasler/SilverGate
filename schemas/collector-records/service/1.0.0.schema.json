@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/collector-records/service/1.0.0.schema.json",
+  "title": "SilverGate collector-records/service",
+  "type": "object",
+  "properties": {
+    "recordId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "collectorRunId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "sourceId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "recordType": {
+      "const": "service"
+    },
+    "recordSchemaVersion": {
+      "const": "1.0.0"
+    },
+    "observedWindow": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/window"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "processId": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "processId",
+        "path",
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "fieldStates": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/fieldStates"
+    },
+    "extensions": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/extensions"
+    }
+  },
+  "required": [
+    "recordId",
+    "collectorRunId",
+    "sourceId",
+    "recordType",
+    "recordSchemaVersion",
+    "observedWindow",
+    "payload",
+    "fieldStates"
+  ],
+  "additionalProperties": false
+}

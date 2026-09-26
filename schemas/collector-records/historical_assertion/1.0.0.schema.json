@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/collector-records/historical_assertion/1.0.0.schema.json",
+  "title": "SilverGate collector-records/historical_assertion",
+  "type": "object",
+  "properties": {
+    "recordId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "collectorRunId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "sourceId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "recordType": {
+      "const": "historical_assertion"
+    },
+    "recordSchemaVersion": {
+      "const": "1.0.0"
+    },
+    "observedWindow": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/window"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "statement": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reportedStatus": {
+          "anyOf": [
+            {
+              "enum": [
+                "fact",
+                "inference",
+                "hypothesis",
+                "unknown"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "originalEvidenceAvailable": {
+          "anyOf": [
+            {
+              "const": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "details": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 1048576
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 1048576
+                  }
+                },
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 100000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "subject",
+        "statement",
+        "reportedStatus",
+        "originalEvidenceAvailable",
+        "details"
+      ],
+      "additionalProperties": false
+    },
+    "fieldStates": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/fieldStates"
+    },
+    "extensions": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/extensions"
+    }
+  },
+  "required": [
+    "recordId",
+    "collectorRunId",
+    "sourceId",
+    "recordType",
+    "recordSchemaVersion",
+    "observedWindow",
+    "payload",
+    "fieldStates"
+  ],
+  "additionalProperties": false
+}

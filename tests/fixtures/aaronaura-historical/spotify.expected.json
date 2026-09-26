@@ -1,0 +1,93 @@
+{
+  "case": "spotify",
+  "snapshotId": "00000000-0000-4000-8000-000000000001",
+  "requiredClaims": [
+    {
+      "predicate": "historical_listener_scope",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-1"
+      ],
+      "meaning": "The handoff records a loopback-only TCP listener at 127.0.0.1:7768 and wildcard IPv4 listener at 0.0.0.0:57621."
+    },
+    {
+      "predicate": "historical_permission_scope",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-2"
+      ],
+      "meaning": "The handoff records enabled Public inbound TCP and UDP Any-port rules with RemoteAddress Any."
+    },
+    {
+      "predicate": "historical_dynamic_port_use",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-3"
+      ],
+      "meaning": "The handoff reports dynamic TCP/UDP port use; a single high port alone does not prove dynamic selection."
+    },
+    {
+      "predicate": "consent_origin",
+      "epistemicStatus": "inference",
+      "supportRecordIds": [
+        "record-4"
+      ],
+      "meaning": "Reported Query User rule names support a Windows user-consent origin inference."
+    },
+    {
+      "predicate": "peer_identity",
+      "epistemicStatus": "unknown",
+      "supportRecordIds": [
+        "record-5"
+      ],
+      "meaning": "The physical identity of peer-B contacted at TCP 8009 remains unknown."
+    },
+    {
+      "predicate": "permission_scope_exceeds_observed_endpoints",
+      "epistemicStatus": "inference",
+      "supportRecordIds": [
+        "record-1",
+        "record-2"
+      ],
+      "meaning": "Reported Any-port permission exceeds the observed listener ports; this does not establish all ports needed."
+    }
+  ],
+  "forbiddenConclusions": [
+    "uses every port",
+    "malicious because Any",
+    "UDP packets proven by binding",
+    "peer-B is a Chromecast",
+    "historical sockets are current"
+  ],
+  "coverageGaps": [
+    "Original Windows query artifacts unavailable",
+    "Exact original observation times unknown"
+  ],
+  "negativeVariants": [
+    {
+      "name": "remove-historical_listener_scope",
+      "removeSupportFor": "record-1",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_permission_scope",
+      "removeSupportFor": "record-2",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_dynamic_port_use",
+      "removeSupportFor": "record-3",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-consent_origin",
+      "removeSupportFor": "record-4",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-peer_identity",
+      "removeSupportFor": "record-5",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    }
+  ]
+}

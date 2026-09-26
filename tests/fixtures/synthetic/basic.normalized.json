@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0.0",
+  "analysisId": "synthetic-analysis",
+  "inputSnapshotIds": [
+    "00000000-0000-4000-8000-000000000100"
+  ],
+  "inputHashes": [
+    "61d58b4f01d352602bbab2805732187fde086dcad641238c6fdc5ec655a9fa61"
+  ],
+  "engineVersion": "fixture-only",
+  "rulesetVersion": "fixture-only",
+  "normalizerVersion": "fixture-only",
+  "semanticConfiguration": {},
+  "entities": [
+    {
+      "entityId": "app-1",
+      "entityType": "Application",
+      "attributes": [
+        {
+          "name": "originalPath",
+          "value": "C:\\Synthetic\\<script>not-code</script>.exe"
+        }
+      ],
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000100",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/imagePath"
+        }
+      ],
+      "fieldStates": {},
+      "actor": {
+        "kind": "application",
+        "identityRefs": []
+      }
+    }
+  ],
+  "relationships": [],
+  "coverage": {
+    "requestedScope": [
+      "fixture"
+    ],
+    "completedScope": [
+      "supplied_records"
+    ],
+    "missingScope": [
+      "original_windows_query"
+    ],
+    "interval": {
+      "start": null,
+      "end": null,
+      "precision": "unknown"
+    },
+    "completeness": "partial",
+    "limitations": [
+      "No current machine state is represented."
+    ]
+  }
+}

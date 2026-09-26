@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/collector-records/package/1.0.0.schema.json",
+  "title": "SilverGate collector-records/package",
+  "type": "object",
+  "properties": {
+    "recordId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "collectorRunId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "sourceId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "recordType": {
+      "const": "package"
+    },
+    "recordSchemaVersion": {
+      "const": "1.0.0"
+    },
+    "observedWindow": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/window"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "familyName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fullName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "publisher": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "capabilities": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 1048576
+              },
+              "maxItems": 100000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "applications": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 1048576
+              },
+              "maxItems": 100000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "familyName",
+        "fullName",
+        "publisher",
+        "capabilities",
+        "applications"
+      ],
+      "additionalProperties": false
+    },
+    "fieldStates": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/fieldStates"
+    },
+    "extensions": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/extensions"
+    }
+  },
+  "required": [
+    "recordId",
+    "collectorRunId",
+    "sourceId",
+    "recordType",
+    "recordSchemaVersion",
+    "observedWindow",
+    "payload",
+    "fieldStates"
+  ],
+  "additionalProperties": false
+}

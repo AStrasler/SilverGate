@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/normalized/1.0.0.schema.json",
+  "title": "SilverGate normalized",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "analysisId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "inputSnapshotIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "minItems": 1,
+      "maxItems": 1
+    },
+    "inputHashes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "minItems": 1,
+      "maxItems": 1
+    },
+    "engineVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "rulesetVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "normalizerVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "semanticConfiguration": {
+      "type": "object",
+      "maxProperties": 0
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "entityType": {
+            "enum": [
+              "Application",
+              "Executable",
+              "ProcessInstance",
+              "SocketObservation",
+              "FirewallPermission",
+              "Interface",
+              "NetworkContext",
+              "PeerEndpoint",
+              "Package",
+              "Service",
+              "Feature"
+            ]
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 256
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 1048576
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 100000
+          },
+          "evidenceRefs": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/evidenceRefs"
+          },
+          "fieldStates": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/fieldStates"
+          },
+          "actor": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "application",
+                  "service",
+                  "automation",
+                  "agent",
+                  "unknown"
+                ]
+              },
+              "identityRefs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 256
+                },
+                "maxItems": 100000
+              }
+            },
+            "required": [
+              "kind",
+              "identityRefs"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "entityId",
+          "entityType",
+          "attributes",
+          "evidenceRefs",
+          "fieldStates"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relationshipId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "type": {
+            "enum": [
+              "process_of",
+              "owns_endpoint",
+              "registered_with",
+              "package_of",
+              "service_in_process",
+              "candidate_permission_for",
+              "observed_peer",
+              "possible_feature_dependency"
+            ]
+          },
+          "from": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "epistemicStatus": {
+            "enum": [
+              "fact",
+              "inference",
+              "hypothesis",
+              "unknown"
+            ]
+          },
+          "strength": {
+            "anyOf": [
+              {
+                "enum": [
+                  "direct",
+                  "corroborated",
+                  "heuristic"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidenceRefs": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/evidenceRefs"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            "maxItems": 100000
+          }
+        },
+        "required": [
+          "relationshipId",
+          "type",
+          "from",
+          "to",
+          "epistemicStatus",
+          "strength",
+          "evidenceRefs",
+          "limitations"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "coverage": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/coverage"
+    },
+    "extensions": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/extensions"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "analysisId",
+    "inputSnapshotIds",
+    "inputHashes",
+    "engineVersion",
+    "rulesetVersion",
+    "normalizerVersion",
+    "semanticConfiguration",
+    "entities",
+    "relationships",
+    "coverage"
+  ],
+  "additionalProperties": false
+}

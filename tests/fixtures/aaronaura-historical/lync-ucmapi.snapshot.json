@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0.0",
+  "snapshotId": "00000000-0000-4000-8000-000000000004",
+  "origin": "historical_transcription",
+  "producer": {
+    "name": "SilverGate fixture authoring",
+    "version": "0.1.0",
+    "collectorSetVersion": "fixture-1",
+    "channel": "Development"
+  },
+  "captureWindow": {
+    "startedAt": "2026-09-26T00:00:00Z",
+    "endedAt": "2026-09-26T00:00:00Z"
+  },
+  "host": {
+    "scopeId": "fixture-host",
+    "reportedName": null,
+    "osVersion": null,
+    "runtimeVersion": null,
+    "platform": {
+      "osFamily": null,
+      "architecture": null,
+      "build": null,
+      "releaseChannel": null,
+      "runtimeEdition": null,
+      "capturePrivilegeLevel": null
+    },
+    "fieldStates": {
+      "/reportedName": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/osVersion": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/runtimeVersion": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/osFamily": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/architecture": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/build": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/releaseChannel": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/runtimeEdition": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/capturePrivilegeLevel": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      }
+    }
+  },
+  "sources": [
+    {
+      "sourceId": "source-1",
+      "kind": "user_handoff",
+      "label": "Sanitized user handoff transcription",
+      "sourceHash": null,
+      "originalObservationWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "precision": "unknown",
+      "fieldStates": {
+        "/sourceHash": {
+          "state": "not_collected",
+          "reasonCode": "SOURCE_NOT_EMBEDDED"
+        },
+        "/originalObservationWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/originalObservationWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    }
+  ],
+  "collectorRuns": [
+    {
+      "collectorRunId": "run-1",
+      "collectorId": "fixture",
+      "version": "1.0.0",
+      "recordSchemaVersion": "1.0.0",
+      "status": "partial",
+      "startedAt": "2026-09-26T00:00:00Z",
+      "endedAt": "2026-09-26T00:00:00Z",
+      "durationMs": 0,
+      "records": [
+        "record-1",
+        "record-2",
+        "record-3",
+        "record-4"
+      ],
+      "errors": [],
+      "coverage": {
+        "requestedScope": [
+          "fixture"
+        ],
+        "completedScope": [
+          "supplied_records"
+        ],
+        "missingScope": [
+          "original_windows_query"
+        ],
+        "interval": {
+          "start": null,
+          "end": null,
+          "precision": "unknown"
+        },
+        "completeness": "partial",
+        "limitations": [
+          "No current machine state is represented."
+        ]
+      },
+      "metrics": {
+        "recordCount": 4,
+        "serializedBytes": null,
+        "skippedCount": 0
+      }
+    }
+  ],
+  "records": [
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "lync-ucmapi",
+        "statement": "The handoff records Lync.exe and UcMapi.exe as current Microsoft-signed Office components, version 16.0.20326.20158.",
+        "reportedStatus": "fact",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-1",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    },
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "lync-ucmapi",
+        "statement": "No Lync/UcMapi sockets were observed during the reported interval; this does not establish future inactivity.",
+        "reportedStatus": "fact",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-2",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    },
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "lync-ucmapi",
+        "statement": "The handoff records Outlook add-in, MAPI, meeting and protocol-handler registrations.",
+        "reportedStatus": "fact",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-3",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    },
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "lync-ucmapi",
+        "statement": "Plain GUID rule names and PersistentStore/Local do not establish who created the rules.",
+        "reportedStatus": "unknown",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-4",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    }
+  ],
+  "privacy": {
+    "policyVersion": "fixture-1",
+    "omissions": [
+      "Original command output, user paths, MAC addresses and PIDs."
+    ],
+    "redactions": [
+      "Private peer addresses replaced by peer-A and peer-B; no physical identities inferred."
+    ]
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalizationVersion": "sg-json-v1",
+    "recordHashes": {
+      "record-1": "bb413e81c5f3d7e937a83528ecf78895b4ffb162c5913b982b80c52fca6f8004",
+      "record-2": "d14dac2799a47a672c4101eb9df2cd479efa226efe2cc2037ec17a6ba02137e8",
+      "record-3": "f3fb46a8fc595c8991acc7bb009bca961a121c5300f556572810b8628a346292",
+      "record-4": "0a03697101a2f57821307b86714d612ffcbc6be4de2caaeb0cf447f1b9146e3f"
+    },
+    "manifestHash": "231aa331adc40d483ab760e99c4f4a460e288aae3a426f0d18c5d26679a8743b"
+  }
+}

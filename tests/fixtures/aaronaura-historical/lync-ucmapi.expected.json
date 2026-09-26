@@ -1,0 +1,71 @@
+{
+  "case": "lync-ucmapi",
+  "snapshotId": "00000000-0000-4000-8000-000000000004",
+  "requiredClaims": [
+    {
+      "predicate": "historical_serviced_identity",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-1"
+      ],
+      "meaning": "The handoff records Lync.exe and UcMapi.exe as current Microsoft-signed Office components, version 16.0.20326.20158."
+    },
+    {
+      "predicate": "historical_no_sockets",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-2"
+      ],
+      "meaning": "No Lync/UcMapi sockets were observed during the reported interval; this does not establish future inactivity."
+    },
+    {
+      "predicate": "historical_integration",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-3"
+      ],
+      "meaning": "The handoff records Outlook add-in, MAPI, meeting and protocol-handler registrations."
+    },
+    {
+      "predicate": "rule_creator",
+      "epistemicStatus": "unknown",
+      "supportRecordIds": [
+        "record-4"
+      ],
+      "meaning": "Plain GUID rule names and PersistentStore/Local do not establish who created the rules."
+    }
+  ],
+  "forbiddenConclusions": [
+    "obsolete",
+    "malicious",
+    "safe to remove",
+    "never starts",
+    "registrations prove active use"
+  ],
+  "coverageGaps": [
+    "Original Windows query artifacts unavailable",
+    "Exact original observation times unknown"
+  ],
+  "negativeVariants": [
+    {
+      "name": "remove-historical_serviced_identity",
+      "removeSupportFor": "record-1",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_no_sockets",
+      "removeSupportFor": "record-2",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_integration",
+      "removeSupportFor": "record-3",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-rule_creator",
+      "removeSupportFor": "record-4",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    }
+  ]
+}

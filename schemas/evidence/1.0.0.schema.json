@@ -1,0 +1,533 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/evidence/1.0.0.schema.json",
+  "title": "SilverGate evidence",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "snapshotId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "origin": {
+      "enum": [
+        "live_capture",
+        "historical_transcription",
+        "synthetic"
+      ]
+    },
+    "producer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "collectorSetVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "channel": {
+          "anyOf": [
+            {
+              "enum": [
+                "Stable",
+                "Preview",
+                "Development"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "collectorSetVersion",
+        "channel"
+      ],
+      "additionalProperties": false
+    },
+    "captureWindow": {
+      "type": "object",
+      "properties": {
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        }
+      },
+      "required": [
+        "startedAt",
+        "endedAt"
+      ],
+      "additionalProperties": false
+    },
+    "host": {
+      "type": "object",
+      "properties": {
+        "scopeId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "reportedName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "osVersion": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runtimeVersion": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "platform": {
+          "type": "object",
+          "properties": {
+            "osFamily": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1048576
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "architecture": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1048576
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "build": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1048576
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "releaseChannel": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1048576
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "runtimeEdition": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1048576
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "capturePrivilegeLevel": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 1048576
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "osFamily",
+            "architecture",
+            "build",
+            "releaseChannel",
+            "runtimeEdition",
+            "capturePrivilegeLevel"
+          ],
+          "additionalProperties": false
+        },
+        "fieldStates": {
+          "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/fieldStates"
+        }
+      },
+      "required": [
+        "scopeId",
+        "reportedName",
+        "osVersion",
+        "runtimeVersion",
+        "platform",
+        "fieldStates"
+      ],
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "kind": {
+            "enum": [
+              "windows_query",
+              "user_handoff",
+              "synthetic_fixture"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "sourceHash": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "originalObservationWindow": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/window"
+          },
+          "precision": {
+            "enum": [
+              "query_interval",
+              "reported_interval",
+              "unknown"
+            ]
+          },
+          "fieldStates": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/fieldStates"
+          }
+        },
+        "required": [
+          "sourceId",
+          "kind",
+          "label",
+          "sourceHash",
+          "originalObservationWindow",
+          "precision",
+          "fieldStates"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "collectorRuns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "collectorRunId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "collectorId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "recordSchemaVersion": {
+            "const": "1.0.0"
+          },
+          "status": {
+            "enum": [
+              "success",
+              "empty",
+              "partial",
+              "inaccessible",
+              "unsupported",
+              "failed",
+              "timed_out",
+              "cancelled",
+              "not_requested"
+            ]
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "endedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "durationMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "maxItems": 100000
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/error"
+            },
+            "maxItems": 100000
+          },
+          "coverage": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/coverage"
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "recordCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "serializedBytes": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "skippedCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "recordCount",
+              "serializedBytes",
+              "skippedCount"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "collectorRunId",
+          "collectorId",
+          "version",
+          "recordSchemaVersion",
+          "status",
+          "startedAt",
+          "endedAt",
+          "durationMs",
+          "records",
+          "errors",
+          "coverage",
+          "metrics"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/firewall_rule/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/firewall_filter/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/firewall_profile/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/process/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/tcp_connection/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/udp_endpoint/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/interface/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/ip_address/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/route/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/network_profile/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/file_identity/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/signature/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/package/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/service/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/integration_registration/1.0.0.schema.json"
+          },
+          {
+            "$ref": "https://silvergate.invalid/schemas/collector-records/historical_assertion/1.0.0.schema.json"
+          }
+        ]
+      },
+      "maxItems": 100000
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "omissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        },
+        "redactions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        }
+      },
+      "required": [
+        "policyVersion",
+        "omissions",
+        "redactions"
+      ],
+      "additionalProperties": false
+    },
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "canonicalizationVersion": {
+          "const": "sg-json-v1"
+        },
+        "recordHashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "manifestHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "algorithm",
+        "canonicalizationVersion",
+        "recordHashes",
+        "manifestHash"
+      ],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/extensions"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "snapshotId",
+    "origin",
+    "producer",
+    "captureWindow",
+    "host",
+    "sources",
+    "collectorRuns",
+    "records",
+    "privacy",
+    "integrity"
+  ],
+  "additionalProperties": false
+}

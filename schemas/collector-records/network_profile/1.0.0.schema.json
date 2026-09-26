@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/collector-records/network_profile/1.0.0.schema.json",
+  "title": "SilverGate collector-records/network_profile",
+  "type": "object",
+  "properties": {
+    "recordId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "collectorRunId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "sourceId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "recordType": {
+      "const": "network_profile"
+    },
+    "recordSchemaVersion": {
+      "const": "1.0.0"
+    },
+    "observedWindow": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/window"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "interfaceIndex": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "category": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ipv4Connectivity": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ipv6Connectivity": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "interfaceIndex",
+        "name",
+        "category",
+        "ipv4Connectivity",
+        "ipv6Connectivity"
+      ],
+      "additionalProperties": false
+    },
+    "fieldStates": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/fieldStates"
+    },
+    "extensions": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/extensions"
+    }
+  },
+  "required": [
+    "recordId",
+    "collectorRunId",
+    "sourceId",
+    "recordType",
+    "recordSchemaVersion",
+    "observedWindow",
+    "payload",
+    "fieldStates"
+  ],
+  "additionalProperties": false
+}

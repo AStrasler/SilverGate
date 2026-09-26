@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0.0",
+  "snapshotId": "00000000-0000-4000-8000-000000000006",
+  "origin": "historical_transcription",
+  "producer": {
+    "name": "SilverGate fixture authoring",
+    "version": "0.1.0",
+    "collectorSetVersion": "fixture-1",
+    "channel": "Development"
+  },
+  "captureWindow": {
+    "startedAt": "2026-09-26T00:00:00Z",
+    "endedAt": "2026-09-26T00:00:00Z"
+  },
+  "host": {
+    "scopeId": "fixture-host",
+    "reportedName": null,
+    "osVersion": null,
+    "runtimeVersion": null,
+    "platform": {
+      "osFamily": null,
+      "architecture": null,
+      "build": null,
+      "releaseChannel": null,
+      "runtimeEdition": null,
+      "capturePrivilegeLevel": null
+    },
+    "fieldStates": {
+      "/reportedName": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/osVersion": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/runtimeVersion": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/osFamily": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/architecture": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/build": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/releaseChannel": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/runtimeEdition": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/capturePrivilegeLevel": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      }
+    }
+  },
+  "sources": [
+    {
+      "sourceId": "source-1",
+      "kind": "user_handoff",
+      "label": "Sanitized user handoff transcription",
+      "sourceHash": null,
+      "originalObservationWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "precision": "unknown",
+      "fieldStates": {
+        "/sourceHash": {
+          "state": "not_collected",
+          "reasonCode": "SOURCE_NOT_EMBEDDED"
+        },
+        "/originalObservationWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/originalObservationWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    }
+  ],
+  "collectorRuns": [
+    {
+      "collectorRunId": "run-1",
+      "collectorId": "fixture",
+      "version": "1.0.0",
+      "recordSchemaVersion": "1.0.0",
+      "status": "partial",
+      "startedAt": "2026-09-26T00:00:00Z",
+      "endedAt": "2026-09-26T00:00:00Z",
+      "durationMs": 0,
+      "records": [
+        "record-1",
+        "record-2",
+        "record-3",
+        "record-4"
+      ],
+      "errors": [],
+      "coverage": {
+        "requestedScope": [
+          "fixture"
+        ],
+        "completedScope": [
+          "supplied_records"
+        ],
+        "missingScope": [
+          "original_windows_query"
+        ],
+        "interval": {
+          "start": null,
+          "end": null,
+          "precision": "unknown"
+        },
+        "completeness": "partial",
+        "limitations": [
+          "No current machine state is represented."
+        ]
+      },
+      "metrics": {
+        "recordCount": 4,
+        "serializedBytes": null,
+        "skippedCount": 0
+      }
+    }
+  ],
+  "records": [
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "file-printer-sharing",
+        "statement": "The handoff records only selected enabled Public inbound File and Printer Sharing rules changed to Enabled False; Action Allow definitions remain.",
+        "reportedStatus": "fact",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-1",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    },
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "file-printer-sharing",
+        "statement": "The handoff says Private/Domain rules, SMB stack and outbound SMB were not disabled.",
+        "reportedStatus": "fact",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-2",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    },
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "file-printer-sharing",
+        "statement": "Future outbound SMB access to a NAS is a user requirement, not observed NAS traffic.",
+        "reportedStatus": "fact",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-3",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    },
+    {
+      "recordType": "historical_assertion",
+      "payload": {
+        "subject": "file-printer-sharing",
+        "statement": "Disabled selected rules do not prove TCP 139/445 unreachable under every policy.",
+        "reportedStatus": "unknown",
+        "originalEvidenceAvailable": false,
+        "details": []
+      },
+      "recordId": "record-4",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    }
+  ],
+  "privacy": {
+    "policyVersion": "fixture-1",
+    "omissions": [
+      "Original command output, user paths, MAC addresses and PIDs."
+    ],
+    "redactions": [
+      "Private peer addresses replaced by peer-A and peer-B; no physical identities inferred."
+    ]
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalizationVersion": "sg-json-v1",
+    "recordHashes": {
+      "record-1": "301a14b09cbb771310df890b5377204078f4f559479850de4d644d5649eef800",
+      "record-2": "4e1a1d87b74a3e009612ea69080803db9a093275df6a6ffc66e85cc1d6f5989a",
+      "record-3": "e510e6c56b1c0fcf8aa642e4cfcae949cd2490eb554cdd77b89ccc01870d9911",
+      "record-4": "d017af46c6bd3bd0865f763a880dc39dd86c1d2c1d800bc6b0c56d36c9b6ff7e"
+    },
+    "manifestHash": "c6ee38277b49bdda7a8af6eff0a9666606b49899d9bafd2667d8007be61da85a"
+  }
+}

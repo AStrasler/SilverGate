@@ -1,0 +1,55 @@
+{
+  "case": "adobe-native-client",
+  "snapshotId": "00000000-0000-4000-8000-000000000003",
+  "requiredClaims": [
+    {
+      "predicate": "historical_package_identity",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-1"
+      ],
+      "meaning": "The handoff associates Adobe Native Client rules with AdobeNotificationClient_enpm4xejd91yc."
+    },
+    {
+      "predicate": "historical_capability",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-2"
+      ],
+      "meaning": "The handoff records internetClientServer capability and an In-Allow-ServerCapability rule."
+    },
+    {
+      "predicate": "package_permission_context",
+      "epistemicStatus": "inference",
+      "supportRecordIds": [
+        "record-3"
+      ],
+      "meaning": "Package/capability context explains the broad-looking permission; Program Any does not erase package scope."
+    }
+  ],
+  "forbiddenConclusions": [
+    "Program Any authorizes every application",
+    "signature proves optimal policy"
+  ],
+  "coverageGaps": [
+    "Original Windows query artifacts unavailable",
+    "Exact original observation times unknown"
+  ],
+  "negativeVariants": [
+    {
+      "name": "remove-historical_package_identity",
+      "removeSupportFor": "record-1",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_capability",
+      "removeSupportFor": "record-2",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-package_permission_context",
+      "removeSupportFor": "record-3",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    }
+  ]
+}

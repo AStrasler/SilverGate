@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/findings/1.0.0.schema.json",
+  "title": "SilverGate findings",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "exportId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "producer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "inputSnapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "snapshotId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "origin": {
+            "enum": [
+              "live_capture",
+              "historical_transcription",
+              "synthetic"
+            ]
+          }
+        },
+        "required": [
+          "snapshotId",
+          "hash",
+          "origin"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "analysisVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "hostScopeId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "findingId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "subjectIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "maxItems": 100000
+          },
+          "predicate": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "epistemicStatus": {
+            "enum": [
+              "fact",
+              "inference",
+              "hypothesis",
+              "unknown"
+            ]
+          },
+          "value": {
+            "type": "object",
+            "properties": {
+              "dimension": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "comparison": {
+                "type": "string",
+                "maxLength": 1048576
+              }
+            },
+            "required": [
+              "dimension",
+              "comparison"
+            ],
+            "additionalProperties": false
+          },
+          "evidenceRefs": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/evidenceRefs"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            "maxItems": 100000
+          },
+          "observationWindow": {
+            "anyOf": [
+              {
+                "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/window"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "explanation": {
+            "type": "string",
+            "maxLength": 1048576
+          }
+        },
+        "required": [
+          "findingId",
+          "subjectIds",
+          "predicate",
+          "epistemicStatus",
+          "value",
+          "evidenceRefs",
+          "limitations",
+          "observationWindow",
+          "explanation"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "coverage": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/coverage"
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "omissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        },
+        "redactions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        }
+      },
+      "required": [
+        "policyVersion",
+        "omissions",
+        "redactions"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "exportId",
+    "producer",
+    "inputSnapshots",
+    "analysisVersion",
+    "hostScopeId",
+    "findings",
+    "coverage",
+    "privacy"
+  ],
+  "additionalProperties": false
+}

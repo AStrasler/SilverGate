@@ -1,0 +1,70 @@
+{
+  "case": "file-printer-sharing",
+  "snapshotId": "00000000-0000-4000-8000-000000000006",
+  "requiredClaims": [
+    {
+      "predicate": "historical_disabled_public_rules",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-1"
+      ],
+      "meaning": "The handoff records only selected enabled Public inbound File and Printer Sharing rules changed to Enabled False; Action Allow definitions remain."
+    },
+    {
+      "predicate": "historical_scope_unchanged",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-2"
+      ],
+      "meaning": "The handoff says Private/Domain rules, SMB stack and outbound SMB were not disabled."
+    },
+    {
+      "predicate": "nas_requirement",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-3"
+      ],
+      "meaning": "Future outbound SMB access to a NAS is a user requirement, not observed NAS traffic."
+    },
+    {
+      "predicate": "reachability",
+      "epistemicStatus": "unknown",
+      "supportRecordIds": [
+        "record-4"
+      ],
+      "meaning": "Disabled selected rules do not prove TCP 139/445 unreachable under every policy."
+    }
+  ],
+  "forbiddenConclusions": [
+    "all SMB disabled",
+    "139/445 unreachable",
+    "Private and Domain disabled",
+    "future NAS traffic observed"
+  ],
+  "coverageGaps": [
+    "Original Windows query artifacts unavailable",
+    "Exact original observation times unknown"
+  ],
+  "negativeVariants": [
+    {
+      "name": "remove-historical_disabled_public_rules",
+      "removeSupportFor": "record-1",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_scope_unchanged",
+      "removeSupportFor": "record-2",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-nas_requirement",
+      "removeSupportFor": "record-3",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-reachability",
+      "removeSupportFor": "record-4",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    }
+  ]
+}

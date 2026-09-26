@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0.0",
+  "exportId": "export-1",
+  "producer": "fixture-only",
+  "inputSnapshots": [
+    {
+      "snapshotId": "00000000-0000-4000-8000-000000000100",
+      "hash": "61d58b4f01d352602bbab2805732187fde086dcad641238c6fdc5ec655a9fa61",
+      "origin": "synthetic"
+    }
+  ],
+  "analysisVersion": "fixture-only",
+  "hostScopeId": "fixture-host",
+  "findings": [
+    {
+      "subjectIds": [
+        "app-1"
+      ],
+      "predicate": "synthetic_image_path",
+      "epistemicStatus": "fact",
+      "value": {
+        "dimension": "imagePath",
+        "comparison": "reported"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000100",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/imagePath"
+        }
+      ],
+      "limitations": [
+        "Synthetic example only; observation time is unknown."
+      ],
+      "findingId": "finding-1",
+      "observationWindow": null,
+      "explanation": "Synthetic fixture reports an image path; no live observation."
+    }
+  ],
+  "coverage": {
+    "requestedScope": [
+      "fixture"
+    ],
+    "completedScope": [
+      "supplied_records"
+    ],
+    "missingScope": [
+      "original_windows_query"
+    ],
+    "interval": {
+      "start": null,
+      "end": null,
+      "precision": "unknown"
+    },
+    "completeness": "partial",
+    "limitations": [
+      "No current machine state is represented."
+    ]
+  },
+  "privacy": {
+    "policyVersion": "fixture-1",
+    "omissions": [
+      "Original command output, user paths, MAC addresses and PIDs."
+    ],
+    "redactions": [
+      "Private peer addresses replaced by peer-A and peer-B; no physical identities inferred."
+    ]
+  }
+}

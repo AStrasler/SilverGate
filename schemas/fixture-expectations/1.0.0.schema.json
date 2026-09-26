@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/fixture-expectations/1.0.0.schema.json",
+  "title": "SilverGate fixture-expectations",
+  "type": "object",
+  "properties": {
+    "case": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "snapshotId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "requiredClaims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "predicate": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "epistemicStatus": {
+            "enum": [
+              "fact",
+              "inference",
+              "hypothesis",
+              "unknown"
+            ]
+          },
+          "supportRecordIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "maxItems": 100000
+          },
+          "meaning": {
+            "type": "string",
+            "maxLength": 1048576
+          }
+        },
+        "required": [
+          "predicate",
+          "epistemicStatus",
+          "supportRecordIds",
+          "meaning"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "forbiddenConclusions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1048576
+      },
+      "maxItems": 100000
+    },
+    "coverageGaps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1048576
+      },
+      "maxItems": 100000
+    },
+    "negativeVariants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "removeSupportFor": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "expectedEffect": {
+            "type": "string",
+            "maxLength": 1048576
+          }
+        },
+        "required": [
+          "name",
+          "removeSupportFor",
+          "expectedEffect"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    }
+  },
+  "required": [
+    "case",
+    "snapshotId",
+    "requiredClaims",
+    "forbiddenConclusions",
+    "coverageGaps",
+    "negativeVariants"
+  ],
+  "additionalProperties": false
+}

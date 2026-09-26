@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/claims/1.0.0.schema.json",
+  "title": "SilverGate claims",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "analysisId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claimId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "subjectIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "maxItems": 100000
+          },
+          "predicate": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "epistemicStatus": {
+            "enum": [
+              "fact",
+              "inference",
+              "hypothesis",
+              "unknown"
+            ]
+          },
+          "strength": {
+            "anyOf": [
+              {
+                "enum": [
+                  "direct",
+                  "corroborated",
+                  "heuristic"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "value": {
+            "type": "object",
+            "properties": {
+              "dimension": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "comparison": {
+                "type": "string",
+                "maxLength": 1048576
+              }
+            },
+            "required": [
+              "dimension",
+              "comparison"
+            ],
+            "additionalProperties": false
+          },
+          "evidenceRefs": {
+            "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/evidenceRefs"
+          },
+          "premiseClaimIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "maxItems": 100000
+          },
+          "ruleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "snapshotIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 1
+              },
+              "observationWindow": {
+                "anyOf": [
+                  {
+                    "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/window"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "snapshotIds",
+              "observationWindow"
+            ],
+            "additionalProperties": false
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1048576
+            },
+            "maxItems": 100000
+          },
+          "unknownReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1048576
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templateId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "claimId",
+          "subjectIds",
+          "predicate",
+          "epistemicStatus",
+          "strength",
+          "value",
+          "evidenceRefs",
+          "premiseClaimIds",
+          "ruleId",
+          "scope",
+          "limitations",
+          "unknownReason",
+          "templateId"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "epistemicStatus": {
+                  "const": "unknown"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "strength": {
+                  "type": "null"
+                },
+                "unknownReason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "strength": {
+                  "enum": [
+                    "direct",
+                    "corroborated",
+                    "heuristic"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 100000
+    },
+    "extensions": {
+      "$ref": "https://silvergate.invalid/schemas/common/1.0.0.schema.json#/$defs/extensions"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "analysisId",
+    "claims"
+  ],
+  "additionalProperties": false
+}

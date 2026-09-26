@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silvergate.invalid/schemas/common/1.0.0.schema.json",
+  "title": "SilverGate common",
+  "$defs": {
+    "fieldStates": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^/"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "enum": [
+              "unknown",
+              "inaccessible",
+              "unsupported",
+              "not_collected",
+              "redacted",
+              "not_applicable",
+              "conversion_failed"
+            ]
+          },
+          "reasonCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "state",
+          "reasonCode"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "snapshotId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recordId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "jsonPointer": {
+            "type": "string",
+            "pattern": "^(?:/(?:[^~/]|~[01])*)*$"
+          }
+        },
+        "required": [
+          "snapshotId",
+          "recordId",
+          "jsonPointer"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100000
+    },
+    "window": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "enum": [
+            "query_interval",
+            "reported_interval",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "precision"
+      ],
+      "additionalProperties": false
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "requestedScope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        },
+        "completedScope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        },
+        "missingScope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        },
+        "interval": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "end": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "precision": {
+              "enum": [
+                "query_interval",
+                "reported_interval",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "start",
+            "end",
+            "precision"
+          ],
+          "additionalProperties": false
+        },
+        "completeness": {
+          "enum": [
+            "complete_for_declared_query",
+            "partial",
+            "none"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        }
+      },
+      "required": [
+        "requestedScope",
+        "completedScope",
+        "missingScope",
+        "interval",
+        "completeness",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "errorId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "collectorId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "affectedScope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        },
+        "fieldPaths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1048576
+          },
+          "maxItems": 100000
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 1048576
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "snapshotId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "recordId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "jsonPointer": {
+                "type": "string",
+                "pattern": "^(?:/(?:[^~/]|~[01])*)*$"
+              }
+            },
+            "required": [
+              "snapshotId",
+              "recordId",
+              "jsonPointer"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 100000
+        }
+      },
+      "required": [
+        "errorId",
+        "code",
+        "collectorId",
+        "affectedScope",
+        "fieldPaths",
+        "message",
+        "retryable",
+        "evidenceRefs"
+      ],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9.-]+:[a-zA-Z0-9_.-]+$"
+      }
+    }
+  }
+}

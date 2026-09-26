@@ -1,0 +1,56 @@
+{
+  "case": "hyper-v",
+  "snapshotId": "00000000-0000-4000-8000-000000000005",
+  "requiredClaims": [
+    {
+      "predicate": "historical_intent",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-1"
+      ],
+      "meaning": "The handoff says Hyper-V remains intentionally installed after removal of the exported VM."
+    },
+    {
+      "predicate": "historical_virtual_interface",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-2"
+      ],
+      "meaning": "The handoff records vEthernet (Default Switch), a virtual interface."
+    },
+    {
+      "predicate": "dependency_removal",
+      "epistemicStatus": "unknown",
+      "supportRecordIds": [
+        "record-3"
+      ],
+      "meaning": "VM removal alone does not establish that Hyper-V firewall infrastructure is unnecessary."
+    }
+  ],
+  "forbiddenConclusions": [
+    "VM removal makes Hyper-V unnecessary",
+    "virtual private traffic is physical LAN",
+    "disable Hyper-V"
+  ],
+  "coverageGaps": [
+    "Original Windows query artifacts unavailable",
+    "Exact original observation times unknown"
+  ],
+  "negativeVariants": [
+    {
+      "name": "remove-historical_intent",
+      "removeSupportFor": "record-1",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_virtual_interface",
+      "removeSupportFor": "record-2",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-dependency_removal",
+      "removeSupportFor": "record-3",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "case": "smart-connect",
+  "snapshotId": "00000000-0000-4000-8000-000000000002",
+  "requiredClaims": [
+    {
+      "predicate": "historical_inbound_interaction",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-1"
+      ],
+      "meaning": "The handoff records peer-A connecting to the SmartConnect listener at TCP 52492."
+    },
+    {
+      "predicate": "historical_outbound_interaction",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-2"
+      ],
+      "meaning": "The handoff records VaultPlugin initiating a connection to peer-B TCP 8009 and outbound Internet connections on TCP 5228."
+    },
+    {
+      "predicate": "historical_loopback",
+      "epistemicStatus": "fact",
+      "supportRecordIds": [
+        "record-3"
+      ],
+      "meaning": "The handoff records loopback communication distinct from local-peer and Internet interactions."
+    },
+    {
+      "predicate": "peer_identity",
+      "epistemicStatus": "unknown",
+      "supportRecordIds": [
+        "record-4"
+      ],
+      "meaning": "Neither peer-A nor peer-B has an established physical device identity."
+    }
+  ],
+  "forbiddenConclusions": [
+    "direction proven solely by a new endpoint snapshot",
+    "peer identity known",
+    "all broad permissions are necessary"
+  ],
+  "coverageGaps": [
+    "Original Windows query artifacts unavailable",
+    "Exact original observation times unknown"
+  ],
+  "negativeVariants": [
+    {
+      "name": "remove-historical_inbound_interaction",
+      "removeSupportFor": "record-1",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_outbound_interaction",
+      "removeSupportFor": "record-2",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-historical_loopback",
+      "removeSupportFor": "record-3",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    },
+    {
+      "name": "remove-peer_identity",
+      "removeSupportFor": "record-4",
+      "expectedEffect": "Withdraw or qualify the claim; do not preserve unsupported certainty."
+    }
+  ]
+}

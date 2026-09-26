@@ -1,0 +1,5 @@
+.test-deps/
+__pycache__/
+artifacts/
+*.wfw
+*.snapshot.local.json

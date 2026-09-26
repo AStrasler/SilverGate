@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "analysisId": "synthetic-analysis",
+  "claims": [
+    {
+      "claimId": "claim-1",
+      "subjectIds": [
+        "app-1"
+      ],
+      "predicate": "synthetic_image_path",
+      "epistemicStatus": "fact",
+      "strength": "direct",
+      "value": {
+        "dimension": "imagePath",
+        "comparison": "reported"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000100",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/imagePath"
+        }
+      ],
+      "premiseClaimIds": [],
+      "ruleId": "fixture-only",
+      "scope": {
+        "snapshotIds": [
+          "00000000-0000-4000-8000-000000000100"
+        ],
+        "observationWindow": null
+      },
+      "limitations": [
+        "Synthetic example only; observation time is unknown."
+      ],
+      "unknownReason": null,
+      "templateId": "fixture-only"
+    }
+  ]
+}

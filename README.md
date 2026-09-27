@@ -8,7 +8,9 @@ Development checkout for the read-only Windows firewall evidence project. The de
 
 Step 1 has an initial implementation: 22 draft-2020-12 schemas, six sanitized historical fixture/expectation pairs, synthetic evidence/derived examples, and 31 passing contract checks. There is no live collector, correlation engine, report command, installer, AI integration or enforcement functionality yet. The six historical expectation files are regression requirements for the upcoming engine, not evidence that those explanations have been generated/tested by an engine.
 
-Validation on 2026-09-26: the direct development contract suite passed all 31 checks. The Windows-provided PowerShell/Pester entry point could not run because the machine's execution policy disables scripts; no policy was changed or bypassed. PowerShell runtime compatibility is therefore not verified. The local checkout points to AStrasler/SilverGate; no files have been pushed or published. The bundled Git lacks its HTTPS transport helper.
+Validation on 2026-09-26: the direct development contract suite passed all 31 checks. The Windows-provided PowerShell/Pester entry point could not run because the machine's execution policy disables scripts; no policy was changed or bypassed. PowerShell runtime compatibility is therefore not verified.
+
+Step 2a now includes a narrow offline Python prototype for the synthetic snapshot. It validates the input with the development contract oracle, derives an application entity, a direct image-path claim, and a finding, and checks the resulting envelopes and evidence references. The Windows-provided PowerShell runtime importer and general normalization/rule engine remain future work. Run `python -m unittest tests/test_offline.py` after installing the development test requirements; run `python -m silvergate.offline tests/fixtures/synthetic/basic.snapshot.json OUTPUT_DIRECTORY` to write derived JSON files.
 
 The implementation sequence remains:
 

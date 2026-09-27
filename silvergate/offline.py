@@ -1,17 +1,15 @@
 """Deterministic, offline Step 2a slice for the synthetic image-path predicate.
 
-The development contract oracle supplies validation until the Windows runtime
-importer is implemented. No collectors or machine queries are invoked.
+The Python runtime importer validates input independently of the test oracle.
+No collectors or machine queries are invoked.
 """
 import copy
 import json
-import sys
 from pathlib import Path
 
+from silvergate.importer import load, validate_snapshot, validate_schema, validate_derived_refs
+
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'tests' / 'contract'))
-from check_contracts import (load, validate_snapshot, validate_schema,
-                             validate_derived_refs)
 
 VERSION = 'fixture-only'
 ANALYSIS_ID = 'synthetic-analysis'
@@ -117,6 +115,7 @@ def analyze(path):
 
 
 if __name__ == '__main__':
+    import sys
     if len(sys.argv) != 3:
         raise SystemExit('usage: python -m silvergate.offline SNAPSHOT OUTPUT_DIRECTORY')
     output = Path(sys.argv[2])

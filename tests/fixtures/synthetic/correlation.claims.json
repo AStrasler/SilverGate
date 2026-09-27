@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0.0",
+  "analysisId": "synthetic-analysis",
+  "claims": [
+    {
+      "claimId": "claim-1",
+      "subjectIds": [
+        "app-1"
+      ],
+      "predicate": "synthetic_image_path",
+      "epistemicStatus": "fact",
+      "strength": "direct",
+      "value": {
+        "dimension": "imagePath",
+        "comparison": "reported"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/imagePath"
+        }
+      ],
+      "premiseClaimIds": [],
+      "ruleId": "fixture-only",
+      "scope": {
+        "snapshotIds": [
+          "00000000-0000-4000-8000-000000000200"
+        ],
+        "observationWindow": null
+      },
+      "limitations": [
+        "Synthetic example only; observation time is unknown."
+      ],
+      "unknownReason": null,
+      "templateId": "fixture-only"
+    },
+    {
+      "claimId": "claim-2",
+      "subjectIds": [
+        "socket-record-2"
+      ],
+      "predicate": "observed_local_endpoint",
+      "epistemicStatus": "fact",
+      "strength": "direct",
+      "value": {
+        "dimension": "localEndpoint",
+        "comparison": "TCP:7768"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localAddress"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/owningProcess"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/state"
+        }
+      ],
+      "premiseClaimIds": [],
+      "ruleId": "observed_local_endpoint-v1",
+      "scope": {
+        "snapshotIds": [
+          "00000000-0000-4000-8000-000000000200"
+        ],
+        "observationWindow": null
+      },
+      "limitations": [
+        "Socket observation does not establish a remote peer or traffic."
+      ],
+      "unknownReason": null,
+      "templateId": "observed_local_endpoint-v1"
+    },
+    {
+      "claimId": "claim-3",
+      "subjectIds": [
+        "socket-record-3"
+      ],
+      "predicate": "observed_local_endpoint",
+      "epistemicStatus": "fact",
+      "strength": "direct",
+      "value": {
+        "dimension": "localEndpoint",
+        "comparison": "UDP:5353"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/localAddress"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/owningProcess"
+        }
+      ],
+      "premiseClaimIds": [],
+      "ruleId": "observed_local_endpoint-v1",
+      "scope": {
+        "snapshotIds": [
+          "00000000-0000-4000-8000-000000000200"
+        ],
+        "observationWindow": null
+      },
+      "limitations": [
+        "Socket observation does not establish a remote peer or traffic."
+      ],
+      "unknownReason": null,
+      "templateId": "observed_local_endpoint-v1"
+    },
+    {
+      "claimId": "claim-4",
+      "subjectIds": [
+        "permission-record-4"
+      ],
+      "predicate": "reported_firewall_rule",
+      "epistemicStatus": "fact",
+      "strength": "direct",
+      "value": {
+        "dimension": "firewallRule",
+        "comparison": "reported"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/name"
+        }
+      ],
+      "premiseClaimIds": [],
+      "ruleId": "reported_firewall_rule-v1",
+      "scope": {
+        "snapshotIds": [
+          "00000000-0000-4000-8000-000000000200"
+        ],
+        "observationWindow": null
+      },
+      "limitations": [
+        "Rule name alone does not establish effective permission."
+      ],
+      "unknownReason": null,
+      "templateId": "reported_firewall_rule-v1"
+    },
+    {
+      "claimId": "claim-5",
+      "subjectIds": [
+        "permission-record-4",
+        "socket-record-2"
+      ],
+      "predicate": "candidate_permission_for_listener",
+      "epistemicStatus": "inference",
+      "strength": "heuristic",
+      "value": {
+        "dimension": "tcpPortMatch",
+        "comparison": "candidate"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/enabled"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/action"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/direction"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-5",
+          "jsonPointer": "/payload/ruleRecordId"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-5",
+          "jsonPointer": "/payload/conditions"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/state"
+        }
+      ],
+      "premiseClaimIds": [
+        "claim-2",
+        "claim-4"
+      ],
+      "ruleId": "candidate_permission_for_listener-v1",
+      "scope": {
+        "snapshotIds": [
+          "00000000-0000-4000-8000-000000000200"
+        ],
+        "observationWindow": null
+      },
+      "limitations": [
+        "Matching TCP port and rule do not establish program binding, network profile applicability, or actual traffic."
+      ],
+      "unknownReason": null,
+      "templateId": "candidate_permission_for_listener-v1"
+    }
+  ]
+}

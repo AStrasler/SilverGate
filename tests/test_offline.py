@@ -100,6 +100,57 @@ class OfflineTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'INVALID_EVIDENCE_POINTER'):
             importer.validate_derived_refs(document, snapshot)
 
+    def test_structured_correlation_matches_golden_outputs(self):
+        path = ROOT / 'tests/fixtures/synthetic/correlation.snapshot.json'
+        snapshot = importer.load(path)
+        importer.validate_snapshot(snapshot)
+        normalized, claims, findings = analyze(path)
+        for name, actual in zip(('normalized', 'claims', 'findings'),
+                                (normalized, claims, findings)):
+            expected = json.loads(path.with_name(f'correlation.{name}.json').read_text())
+            self.assertEqual(expected, actual)
+            importer.validate_schema(name, actual)
+            importer.validate_derived_refs(actual, snapshot)
+        direct = [claim for claim in claims['claims'] if claim['epistemicStatus'] == 'fact']
+        candidates = [claim for claim in claims['claims']
+                      if claim['predicate'] == 'candidate_permission_for_listener']
+        self.assertEqual(4, len(direct))
+        self.assertEqual(1, len(candidates))
+        candidate = candidates[0]
+        self.assertEqual('inference', candidate['epistemicStatus'])
+        self.assertEqual('heuristic', candidate['strength'])
+        self.assertEqual(7, len(candidate['evidenceRefs']))
+        self.assertEqual(2, len(candidate['premiseClaimIds']))
+        self.assertTrue(set(candidate['premiseClaimIds']) <=
+                        {claim['claimId'] for claim in direct})
+        for claim, finding in zip(claims['claims'], findings['findings']):
+            self.assertEqual((claim['epistemicStatus'], claim['value'], claim['evidenceRefs']),
+                             (finding['epistemicStatus'], finding['value'], finding['evidenceRefs']))
+
+    def test_required_support_withdraws_inference(self):
+        path = ROOT / 'tests/fixtures/synthetic/correlation.snapshot.json'
+        variants = {
+            'port_mismatch': lambda s: s['records'][4]['payload']['conditions'][0].update(values=['7769']),
+            'not_listening': lambda s: s['records'][1]['payload'].update(state='Established'),
+            'rule_disabled': lambda s: s['records'][3]['payload'].update(enabled=False),
+        }
+        for name, change in variants.items():
+            with self.subTest(name=name), TemporaryDirectory() as directory:
+                snapshot = importer.load(path)
+                change(snapshot)
+                seal(snapshot)
+                variant = Path(directory) / 'variant.json'
+                variant.write_text(json.dumps(snapshot))
+                oracle_validate(snapshot)
+                importer.validate_snapshot(snapshot)
+                _, claims, findings = analyze(variant)
+                self.assertNotIn('candidate_permission_for_listener',
+                                 [c['predicate'] for c in claims['claims']])
+                self.assertNotIn('candidate_permission_for_listener',
+                                 [f['predicate'] for f in findings['findings']])
+                self.assertEqual(4, len([c for c in claims['claims']
+                                         if c['epistemicStatus'] == 'fact']))
+
 
 if __name__ == '__main__':
     unittest.main()

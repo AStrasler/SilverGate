@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "1.0.0",
+  "exportId": "export-1",
+  "producer": "fixture-only",
+  "inputSnapshots": [
+    {
+      "snapshotId": "00000000-0000-4000-8000-000000000200",
+      "hash": "b0e6c8a21a5cc6cadf4d190eb14b8f934f09e280e1c3ff0f45e2ba0d77a8b08f",
+      "origin": "synthetic"
+    }
+  ],
+  "analysisVersion": "fixture-only",
+  "hostScopeId": "fixture-host",
+  "findings": [
+    {
+      "subjectIds": [
+        "app-1"
+      ],
+      "predicate": "synthetic_image_path",
+      "epistemicStatus": "fact",
+      "value": {
+        "dimension": "imagePath",
+        "comparison": "reported"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/imagePath"
+        }
+      ],
+      "limitations": [
+        "Synthetic example only; observation time is unknown."
+      ],
+      "findingId": "finding-1",
+      "observationWindow": null,
+      "explanation": "Synthetic fixture reports an image path; no live observation."
+    },
+    {
+      "subjectIds": [
+        "socket-record-2"
+      ],
+      "predicate": "observed_local_endpoint",
+      "epistemicStatus": "fact",
+      "value": {
+        "dimension": "localEndpoint",
+        "comparison": "TCP:7768"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localAddress"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/owningProcess"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/state"
+        }
+      ],
+      "limitations": [
+        "Socket observation does not establish a remote peer or traffic."
+      ],
+      "findingId": "finding-2",
+      "observationWindow": null,
+      "explanation": "Structured snapshot reports a local endpoint."
+    },
+    {
+      "subjectIds": [
+        "socket-record-3"
+      ],
+      "predicate": "observed_local_endpoint",
+      "epistemicStatus": "fact",
+      "value": {
+        "dimension": "localEndpoint",
+        "comparison": "UDP:5353"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/localAddress"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/owningProcess"
+        }
+      ],
+      "limitations": [
+        "Socket observation does not establish a remote peer or traffic."
+      ],
+      "findingId": "finding-3",
+      "observationWindow": null,
+      "explanation": "Structured snapshot reports a local endpoint."
+    },
+    {
+      "subjectIds": [
+        "permission-record-4"
+      ],
+      "predicate": "reported_firewall_rule",
+      "epistemicStatus": "fact",
+      "value": {
+        "dimension": "firewallRule",
+        "comparison": "reported"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/name"
+        }
+      ],
+      "limitations": [
+        "Rule name alone does not establish effective permission."
+      ],
+      "findingId": "finding-4",
+      "observationWindow": null,
+      "explanation": "Structured snapshot reports a firewall rule."
+    },
+    {
+      "subjectIds": [
+        "permission-record-4",
+        "socket-record-2"
+      ],
+      "predicate": "candidate_permission_for_listener",
+      "epistemicStatus": "inference",
+      "value": {
+        "dimension": "tcpPortMatch",
+        "comparison": "candidate"
+      },
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/enabled"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/action"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/direction"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-5",
+          "jsonPointer": "/payload/ruleRecordId"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-5",
+          "jsonPointer": "/payload/conditions"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/state"
+        }
+      ],
+      "limitations": [
+        "Matching TCP port and rule do not establish program binding, network profile applicability, or actual traffic."
+      ],
+      "findingId": "finding-5",
+      "observationWindow": null,
+      "explanation": "Rule and TCP listener share an explicit port; applicability remains unconfirmed."
+    }
+  ],
+  "coverage": {
+    "requestedScope": [
+      "fixture"
+    ],
+    "completedScope": [
+      "supplied_records"
+    ],
+    "missingScope": [
+      "original_windows_query"
+    ],
+    "interval": {
+      "start": null,
+      "end": null,
+      "precision": "unknown"
+    },
+    "completeness": "partial",
+    "limitations": [
+      "No current machine state is represented."
+    ]
+  },
+  "privacy": {
+    "policyVersion": "fixture-1",
+    "omissions": [
+      "Original command output, user paths and MAC addresses."
+    ],
+    "redactions": [
+      "All identities and addresses are invented synthetic test values."
+    ]
+  }
+}

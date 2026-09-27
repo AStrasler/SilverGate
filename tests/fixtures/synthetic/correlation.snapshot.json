@@ -1,0 +1,352 @@
+{
+  "schemaVersion": "1.0.0",
+  "snapshotId": "00000000-0000-4000-8000-000000000200",
+  "origin": "synthetic",
+  "producer": {
+    "name": "SilverGate structured correlation fixture",
+    "version": "0.1.0",
+    "collectorSetVersion": "structured-2",
+    "channel": "Development"
+  },
+  "captureWindow": {
+    "startedAt": "2026-09-26T00:00:00Z",
+    "endedAt": "2026-09-26T00:00:00Z"
+  },
+  "host": {
+    "scopeId": "fixture-host",
+    "reportedName": null,
+    "osVersion": null,
+    "runtimeVersion": null,
+    "platform": {
+      "osFamily": null,
+      "architecture": null,
+      "build": null,
+      "releaseChannel": null,
+      "runtimeEdition": null,
+      "capturePrivilegeLevel": null
+    },
+    "fieldStates": {
+      "/reportedName": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/osVersion": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/runtimeVersion": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/osFamily": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/architecture": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/build": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/releaseChannel": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/runtimeEdition": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      },
+      "/platform/capturePrivilegeLevel": {
+        "state": "unknown",
+        "reasonCode": "NOT_IN_FIXTURE"
+      }
+    }
+  },
+  "sources": [
+    {
+      "sourceId": "source-1",
+      "kind": "synthetic_fixture",
+      "label": "Invented collector contract data",
+      "sourceHash": null,
+      "originalObservationWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "precision": "unknown",
+      "fieldStates": {
+        "/sourceHash": {
+          "state": "not_collected",
+          "reasonCode": "SOURCE_NOT_EMBEDDED"
+        },
+        "/originalObservationWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/originalObservationWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    }
+  ],
+  "collectorRuns": [
+    {
+      "collectorRunId": "run-1",
+      "collectorId": "fixture",
+      "version": "1.0.0",
+      "recordSchemaVersion": "1.0.0",
+      "status": "partial",
+      "startedAt": "2026-09-26T00:00:00Z",
+      "endedAt": "2026-09-26T00:00:00Z",
+      "durationMs": 0,
+      "records": [
+        "record-1",
+        "record-2",
+        "record-3",
+        "record-4",
+        "record-5"
+      ],
+      "errors": [],
+      "coverage": {
+        "requestedScope": [
+          "fixture"
+        ],
+        "completedScope": [
+          "supplied_records"
+        ],
+        "missingScope": [
+          "original_windows_query"
+        ],
+        "interval": {
+          "start": null,
+          "end": null,
+          "precision": "unknown"
+        },
+        "completeness": "partial",
+        "limitations": [
+          "No current machine state is represented."
+        ]
+      },
+      "metrics": {
+        "recordCount": 5,
+        "serializedBytes": null,
+        "skippedCount": 0
+      }
+    }
+  ],
+  "records": [
+    {
+      "recordType": "process",
+      "payload": {
+        "pid": 100,
+        "creationTime": null,
+        "imagePath": "C:\\Synthetic\\Correlator.exe",
+        "parentPid": null
+      },
+      "recordId": "record-1",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/payload/creationTime": {
+          "state": "not_collected",
+          "reasonCode": "FIXTURE_NOT_SUPPLIED"
+        },
+        "/payload/parentPid": {
+          "state": "not_collected",
+          "reasonCode": "FIXTURE_NOT_SUPPLIED"
+        }
+      }
+    },
+    {
+      "recordType": "tcp_connection",
+      "payload": {
+        "owningProcess": 100,
+        "localAddress": "127.0.0.1",
+        "localPort": 7768,
+        "remoteAddress": "0.0.0.0",
+        "remotePort": 0,
+        "state": "Listen",
+        "creationTime": null
+      },
+      "recordId": "record-2",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/payload/creationTime": {
+          "state": "not_collected",
+          "reasonCode": "FIXTURE_NOT_SUPPLIED"
+        }
+      }
+    },
+    {
+      "recordType": "udp_endpoint",
+      "payload": {
+        "owningProcess": 100,
+        "localAddress": "::",
+        "localPort": 5353,
+        "creationTime": null
+      },
+      "recordId": "record-3",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/payload/creationTime": {
+          "state": "not_collected",
+          "reasonCode": "FIXTURE_NOT_SUPPLIED"
+        }
+      }
+    },
+    {
+      "recordType": "firewall_rule",
+      "payload": {
+        "name": "correlation-port-7768",
+        "displayName": "Synthetic inbound TCP 7768",
+        "policyStore": "ActiveStore",
+        "policyStoreSource": null,
+        "policyStoreSourceType": null,
+        "enabled": true,
+        "direction": "Inbound",
+        "action": "Allow",
+        "profiles": [
+          "Public"
+        ],
+        "filterRecordIds": [
+          "record-5"
+        ]
+      },
+      "recordId": "record-4",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/payload/policyStoreSource": {
+          "state": "not_collected",
+          "reasonCode": "FIXTURE_NOT_SUPPLIED"
+        },
+        "/payload/policyStoreSourceType": {
+          "state": "not_collected",
+          "reasonCode": "FIXTURE_NOT_SUPPLIED"
+        }
+      }
+    },
+    {
+      "recordType": "firewall_filter",
+      "payload": {
+        "ruleRecordId": "record-4",
+        "filterType": "port",
+        "conditions": [
+          {
+            "name": "LocalPort",
+            "values": [
+              "7768"
+            ]
+          },
+          {
+            "name": "Protocol",
+            "values": [
+              "TCP"
+            ]
+          }
+        ]
+      },
+      "recordId": "record-5",
+      "collectorRunId": "run-1",
+      "sourceId": "source-1",
+      "recordSchemaVersion": "1.0.0",
+      "observedWindow": {
+        "start": null,
+        "end": null,
+        "precision": "unknown"
+      },
+      "fieldStates": {
+        "/observedWindow/start": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        },
+        "/observedWindow/end": {
+          "state": "unknown",
+          "reasonCode": "TIME_NOT_RECORDED"
+        }
+      }
+    }
+  ],
+  "privacy": {
+    "policyVersion": "fixture-1",
+    "omissions": [
+      "Original command output, user paths and MAC addresses."
+    ],
+    "redactions": [
+      "All identities and addresses are invented synthetic test values."
+    ]
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalizationVersion": "sg-json-v1",
+    "recordHashes": {
+      "record-1": "5935f4bbdec1ea04c14d72a0745b717badecb8f2f0cee071f9babf9c2622d756",
+      "record-2": "ade2b5b711ce16dbd09411c72f44e4bc544b41cc4e9159d68299df87159d1336",
+      "record-3": "e19cd94b379d29a55f0d9d5ce3f09d2bd9ec0f0cf53d75cc2ce3680fc52ef0f5",
+      "record-4": "1ab9c4f743a9745b02812cf010d144c643300202473a2eae90607531a19bfcb7",
+      "record-5": "fd7bab6ff8cdea128dcbc9468a19495bb93ad11d64d7d1e4e0cb15964f0bd108"
+    },
+    "manifestHash": "b0e6c8a21a5cc6cadf4d190eb14b8f934f09e280e1c3ff0f45e2ba0d77a8b08f"
+  }
+}

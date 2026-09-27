@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "1.0.0",
+  "analysisId": "synthetic-analysis",
+  "inputSnapshotIds": [
+    "00000000-0000-4000-8000-000000000200"
+  ],
+  "inputHashes": [
+    "b0e6c8a21a5cc6cadf4d190eb14b8f934f09e280e1c3ff0f45e2ba0d77a8b08f"
+  ],
+  "engineVersion": "fixture-only",
+  "rulesetVersion": "fixture-only",
+  "normalizerVersion": "fixture-only",
+  "semanticConfiguration": {},
+  "entities": [
+    {
+      "entityId": "app-1",
+      "entityType": "Application",
+      "attributes": [
+        {
+          "name": "originalPath",
+          "value": "C:\\Synthetic\\Correlator.exe"
+        }
+      ],
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/imagePath"
+        }
+      ],
+      "fieldStates": {},
+      "actor": {
+        "kind": "application",
+        "identityRefs": []
+      }
+    },
+    {
+      "entityId": "socket-record-2",
+      "entityType": "SocketObservation",
+      "attributes": [
+        {
+          "name": "protocol",
+          "value": "TCP"
+        },
+        {
+          "name": "localPort",
+          "value": "7768"
+        }
+      ],
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localAddress"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/owningProcess"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/state"
+        }
+      ],
+      "fieldStates": {}
+    },
+    {
+      "entityId": "socket-record-3",
+      "entityType": "SocketObservation",
+      "attributes": [
+        {
+          "name": "protocol",
+          "value": "UDP"
+        },
+        {
+          "name": "localPort",
+          "value": "5353"
+        }
+      ],
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/localAddress"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/owningProcess"
+        }
+      ],
+      "fieldStates": {}
+    },
+    {
+      "entityId": "permission-record-4",
+      "entityType": "FirewallPermission",
+      "attributes": [
+        {
+          "name": "name",
+          "value": "correlation-port-7768"
+        }
+      ],
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/name"
+        }
+      ],
+      "fieldStates": {}
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipId": "owns-record-1-record-2",
+      "type": "owns_endpoint",
+      "from": "app-1",
+      "to": "socket-record-2",
+      "epistemicStatus": "inference",
+      "strength": "heuristic",
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/pid"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/owningProcess"
+        }
+      ],
+      "limitations": [
+        "PID matches, but creation time is unavailable; process identity is not confirmed."
+      ]
+    },
+    {
+      "relationshipId": "owns-record-1-record-3",
+      "type": "owns_endpoint",
+      "from": "app-1",
+      "to": "socket-record-3",
+      "epistemicStatus": "inference",
+      "strength": "heuristic",
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-1",
+          "jsonPointer": "/payload/pid"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-3",
+          "jsonPointer": "/payload/owningProcess"
+        }
+      ],
+      "limitations": [
+        "PID matches, but creation time is unavailable; process identity is not confirmed."
+      ]
+    },
+    {
+      "relationshipId": "candidate-record-4-record-2",
+      "type": "candidate_permission_for",
+      "from": "permission-record-4",
+      "to": "socket-record-2",
+      "epistemicStatus": "inference",
+      "strength": "heuristic",
+      "evidenceRefs": [
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/enabled"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/action"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-4",
+          "jsonPointer": "/payload/direction"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-5",
+          "jsonPointer": "/payload/ruleRecordId"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-5",
+          "jsonPointer": "/payload/conditions"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/localPort"
+        },
+        {
+          "snapshotId": "00000000-0000-4000-8000-000000000200",
+          "recordId": "record-2",
+          "jsonPointer": "/payload/state"
+        }
+      ],
+      "limitations": [
+        "Matching TCP port and rule do not establish program binding, network profile applicability, or actual traffic."
+      ]
+    }
+  ],
+  "coverage": {
+    "requestedScope": [
+      "fixture"
+    ],
+    "completedScope": [
+      "supplied_records"
+    ],
+    "missingScope": [
+      "original_windows_query"
+    ],
+    "interval": {
+      "start": null,
+      "end": null,
+      "precision": "unknown"
+    },
+    "completeness": "partial",
+    "limitations": [
+      "No current machine state is represented."
+    ]
+  }
+}
